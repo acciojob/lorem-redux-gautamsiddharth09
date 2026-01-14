@@ -14,7 +14,7 @@ export const fetchLorem = createAsyncThunk("lorem/fetchLorem", async () => {
 const loremSlice = createSlice({
   name: "lorem",
   initialState: {
-    isLoading: true,   // IMPORTANT for Cypress
+    isLoading: false,   // intro FIRST
     isError: false,
     data: null,
   },
@@ -22,7 +22,6 @@ const loremSlice = createSlice({
     builder
       .addCase(fetchLorem.pending, (state) => {
         state.isLoading = true;
-        state.isError = false;
       })
       .addCase(fetchLorem.fulfilled, (state, action) => {
         state.isLoading = false;
