@@ -23,11 +23,12 @@ const loremSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchLorem.pending, (state) => {
-        state.hasStarted = true;
+      
         state.isLoading = true;
       })
 
       .addCase(fetchLorem.fulfilled, (state, action) => {
+          state.hasStarted = true;
         state.isLoading = false;
         state.data = action.payload;
       })

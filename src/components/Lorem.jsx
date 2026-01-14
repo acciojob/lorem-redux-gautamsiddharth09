@@ -8,9 +8,15 @@ const Lorem = () => {
     (state) => state.lorem
   );
 
-  useEffect(() => {
+
+useEffect(() => {
+  const timer = setTimeout(() => {
     dispatch(fetchLorem());
-  }, []);
+  }, 0); 
+
+  return () => clearTimeout(timer);
+}, [dispatch]);
+
 
   // INTRO FIRST
   if (!hasStarted) {
@@ -31,16 +37,15 @@ const Lorem = () => {
   if (isError) {
     return <h4>Error loading data!</h4>;
   }
+return (
+  <div>
+    <h4 className="title">Title : {data.title}</h4>
+    <ul>
+      <li>{data.body}</li>
+    </ul>
+  </div>
+);
 
-  // SUCCESS
-  return (
-    <div>
-      <h4 className="title">Title : {data.title}</h4>
-      <ul>
-        <li>{data.body}</li>
-      </ul>
-    </div>
-  );
 };
 
 export default Lorem;
