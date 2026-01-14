@@ -1,8 +1,7 @@
-// src/features/loremSlice.js
 import "regenerator-runtime/runtime";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchLorem = createAsyncThunk("fetchLorem", async () => {
+export const fetchLorem = createAsyncThunk("lorem/fetchLorem", async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
   const data = await res.json();
 
@@ -12,11 +11,10 @@ export const fetchLorem = createAsyncThunk("fetchLorem", async () => {
   };
 });
 
-
 const loremSlice = createSlice({
   name: "lorem",
   initialState: {
-    isLoading: false,
+    isLoading: true,   // IMPORTANT for Cypress
     isError: false,
     data: null,
   },
