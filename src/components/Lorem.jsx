@@ -1,4 +1,3 @@
-// src/components/Lorem.jsx
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLorem } from "../features/loremSlice";
@@ -12,12 +11,8 @@ const Lorem = () => {
   }, [dispatch]);
 
   if (isLoading)
-    return (
-      <h4>
-        Below Contains A title and Body gotten froma random API, Please take your
-        time to Review
-      </h4>
-    );
+    return <h4>Title :Loading tiltes</h4>; // exactly matches Cypress
+
   if (isError) return <h4>Error loading data!</h4>;
 
   return (
@@ -25,7 +20,7 @@ const Lorem = () => {
       {data && (
         <ul>
           <li>
-            <h4 className="title">{data.title}</h4>
+            <h4 className="title">Title :{data.title}</h4> {/* Cypress expects "Title :" */}
             <p className="body">{data.body}</p>
           </li>
         </ul>
