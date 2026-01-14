@@ -10,21 +10,30 @@ const Lorem = () => {
     dispatch(fetchLorem());
   }, [dispatch]);
 
-  if (isLoading)
-    return <h4>Title :Loading tiltes</h4>; // exactly matches Cypress
+ 
+  if (!isLoading && !data) {
+    return (
+      <p>
+        Below Contains A title and Body gotten froma random API, Please take your
+        time to Review
+      </p>
+    );
+  }
 
-  if (isError) return <h4>Error loading data!</h4>;
+  
+  if (isLoading) {
+    return <h4>Title :Loading tiltes</h4>;
+  }
 
+  if (isError) {
+    return <h4>Error loading data!</h4>;
+  }
+
+  
   return (
     <div>
-      {data && (
-        <ul>
-          <li>
-            <h4 className="title">Title :{data.title}</h4> {/* Cypress expects "Title :" */}
-            <p className="body">{data.body}</p>
-          </li>
-        </ul>
-      )}
+      <h4 className="title">Title :{data.title}</h4>
+      <p className="body">Body :{data.body}</p>
     </div>
   );
 };
