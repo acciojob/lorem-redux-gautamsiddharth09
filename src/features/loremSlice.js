@@ -1,17 +1,16 @@
-
-
 // src/features/loremSlice.js
-import "regenerator-runtime/runtime"; // <--- add this at the very top
+import "regenerator-runtime/runtime"; // ensures async/await works
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+// Fetch from JSONPlaceholder (real API)
 export const fetchLorem = createAsyncThunk("fetchLorem", async () => {
-  const res = await fetch("https://api.lorem.com/ipsum");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  if (!res.ok) throw new Error("Failed to fetch data");
   const data = await res.json();
-  return data;
+  return { title: data.title, body: data.body }; // shape matches component
 });
 
-
-export const loremSlice = createSlice({
+const loremSlice = createSlice({
   name: "lorem",
   initialState: {
     isLoading: false,
@@ -19,17 +18,19 @@ export const loremSlice = createSlice({
     data: null,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchLorem.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(fetchLorem.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.data = action.payload;
-    });
-    builder.addCase(fetchLorem.rejected, (state) => {
-      state.isLoading = false;
-      state.isError = true;
-    });
+    builder
+      .addCase(fetchLorem.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchLorem.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.data = action.payload;
+      })
+      .addCase(fetchLorem.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      });
   },
 });
 
