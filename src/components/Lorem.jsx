@@ -33,10 +33,12 @@ const Lorem = () => {
   // SUCCESS
   return (
     <div>
-      <h4 className="title">
+     
+      <ul>
+         <h4 className="title">
         Title :{data.title}
       </h4>
-      <ul>
+      
         <li>{data.body}</li>
       </ul>
     </div>
