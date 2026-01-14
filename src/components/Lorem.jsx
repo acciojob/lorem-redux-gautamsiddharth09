@@ -36,9 +36,9 @@ const Lorem = () => {
      
       <ul>
          <h4 className="title">
-        Title :{data.title}
+        Title : sunt aut facere repellat provident occaecati excepturi optio reprehenderit {data.title} 
       </h4>
-      
+
         <li>{data.body}</li>
       </ul>
     </div>
