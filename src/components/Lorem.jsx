@@ -10,32 +10,34 @@ const Lorem = () => {
     dispatch(fetchLorem());
   }, [dispatch]);
 
-  // Intro text (shown before API resolves)
+ 
   if (!data && !isLoading) {
     return (
-      <p>
+      <h4>
         Below Contains A title and Body gotten froma random API, Please take your
         time to Review
-      </p>
+      </h4>
     );
   }
 
-  // Loading state
+  
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <h4>Loading...</h4>;
   }
 
-  // Error state
+  
   if (isError) {
-    return <p>Error loading data!</p>;
+    return <h4>Error loading data!</h4>;
   }
 
-  // Success state (MUST use li for Cypress)
+
   return (
-    <ul>
-      <li>Title :{data.title}</li>
-      <li>Body :{data.body}</li>
-    </ul>
+    <div>
+      <h4>Title :{data.title}</h4>
+      <ul>
+        <li>{data.body}</li>
+      </ul>
+    </div>
   );
 };
 
