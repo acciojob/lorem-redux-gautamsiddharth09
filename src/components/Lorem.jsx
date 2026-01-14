@@ -39,8 +39,9 @@ useEffect(() => {
   }
 return (
   <div>
-    <h4 className="title">Title : {data.title}</h4>
+   
     <ul>
+      <li> <h4 className="title">Title : {data.title}</h4></li>
       <li>{data.body}</li>
     </ul>
   </div>
