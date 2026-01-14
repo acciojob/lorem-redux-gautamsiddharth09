@@ -4,14 +4,16 @@ import { fetchLorem } from "../features/loremSlice";
 
 const Lorem = () => {
   const dispatch = useDispatch();
-  const { isLoading, isError, data } = useSelector((state) => state.lorem);
+  const { isLoading, isError, data, hasStarted } = useSelector(
+    (state) => state.lorem
+  );
 
   useEffect(() => {
     dispatch(fetchLorem());
   }, []);
 
-  // INTRO TEXT
-  if (!data && !isLoading) {
+  // INTRO FIRST
+  if (!hasStarted) {
     return (
       <h4>
         Below Contains A title and Body gotten froma random API, Please take your
@@ -33,12 +35,8 @@ const Lorem = () => {
   // SUCCESS
   return (
     <div>
-     
+      <h4 className="title">Title : {data.title}</h4>
       <ul>
-         <h4 className="title">
-        Title : sunt aut facere repellat provident occaecati excepturi optio reprehenderit {data.title} 
-      </h4>
-
         <li>{data.body}</li>
       </ul>
     </div>

@@ -14,15 +14,19 @@ export const fetchLorem = createAsyncThunk("lorem/fetchLorem", async () => {
 const loremSlice = createSlice({
   name: "lorem",
   initialState: {
-    isLoading: false,   // intro FIRST
+    isLoading: false,
     isError: false,
     data: null,
+    hasStarted: false,
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchLorem.pending, (state) => {
+        state.hasStarted = true;
         state.isLoading = true;
       })
+
       .addCase(fetchLorem.fulfilled, (state, action) => {
         state.isLoading = false;
         state.data = action.payload;
