@@ -8,7 +8,7 @@ const Lorem = () => {
 
   useEffect(() => {
     dispatch(fetchLorem());
-  }, [dispatch]);
+  }, []);
 
   // INTRO TEXT
   if (!data && !isLoading) {
