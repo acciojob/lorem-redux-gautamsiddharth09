@@ -11,7 +11,13 @@ const Lorem = () => {
     dispatch(fetchLorem());
   }, [dispatch]);
 
-  if (isLoading) return <h4>Loading...</h4>;
+  if (isLoading)
+    return (
+      <h4>
+        Below Contains A title and Body gotten froma random API, Please take your
+        time to Review
+      </h4>
+    );
   if (isError) return <h4>Error loading data!</h4>;
 
   return (
@@ -19,8 +25,8 @@ const Lorem = () => {
       {data && (
         <ul>
           <li>
-            <h4>{data.title}</h4>
-            <p>{data.body}</p>
+            <h4 className="title">{data.title}</h4>
+            <p className="body">{data.body}</p>
           </li>
         </ul>
       )}

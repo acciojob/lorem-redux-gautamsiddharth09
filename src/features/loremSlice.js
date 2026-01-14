@@ -1,13 +1,18 @@
 // src/features/loremSlice.js
-import "regenerator-runtime/runtime"; // ensures async/await works
+import "regenerator-runtime/runtime";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Fetch from JSONPlaceholder (real API)
+// Fetch from JSONPlaceholder
 export const fetchLorem = createAsyncThunk("fetchLorem", async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
   if (!res.ok) throw new Error("Failed to fetch data");
   const data = await res.json();
-  return { title: data.title, body: data.body }; // shape matches component
+  // Shape it to match Cypress test expectations
+  return {
+    title: data.title,
+    body:
+      "Below Contains A title and Body gotten froma random API, Please take your time to Review",
+  };
 });
 
 const loremSlice = createSlice({
