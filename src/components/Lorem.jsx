@@ -41,7 +41,7 @@ return (
   <div>
    
     <ul>
-      <li> <h4 className="title">Title : {data.title}</h4></li>
+      <li> <h4 className="title">Title :{data.title}</h4></li>
       <li>{data.body}</li>
     </ul>
   </div>
