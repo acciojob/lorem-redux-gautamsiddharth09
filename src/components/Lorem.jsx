@@ -10,7 +10,10 @@ const Lorem = () => {
 
 
 useEffect(() => {
+  const timer = setTimeout(() =>{
     dispatch(fetchLorem())
+  }, 100);
+  return () => clearInterval(timer);
 }, [dispatch]);
 
 
