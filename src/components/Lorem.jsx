@@ -10,11 +10,7 @@ const Lorem = () => {
 
 
 useEffect(() => {
-  const timer = setTimeout(() => {
-    dispatch(fetchLorem());
-  }, 0); 
-
-  return () => clearTimeout(timer);
+    dispatch(fetchLorem())
 }, [dispatch]);
 
 
@@ -30,7 +26,14 @@ useEffect(() => {
 
   // LOADING
   if (isLoading) {
-    return <h4>Loading...</h4>;
+    return (
+      <ul>
+        <li>
+          <h4 className="title">Title :Loading titles</h4>
+          <p className="body">Body :Loading Body</p>
+        </li>
+      </ul>
+    );
   }
 
   // ERROR
@@ -41,8 +44,12 @@ return (
   <div>
    
     <ul>
-      <li> <h4 className="title">Title :{data.title}</h4></li>
-      <li className="body">{data.body}</li>
+      {data.slice(0,3).map((post) => (
+      <li key={post.id}>
+         <h4 className="title">Title :{post.title}</h4>
+         <p className="body">Body :{post.body} </p>
+         </li>
+         ))}
     </ul>
   </div>
 );

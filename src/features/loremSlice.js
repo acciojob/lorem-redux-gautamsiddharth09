@@ -2,13 +2,10 @@ import "regenerator-runtime/runtime";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchLorem = createAsyncThunk("lorem/fetchLorem", async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await res.json();
-
-  return {
-    title: data.title,
-    body: data.body,
-  };
+console.log("data =>",data)
+  return data;
 });
 
 const loremSlice = createSlice({
@@ -16,19 +13,18 @@ const loremSlice = createSlice({
   initialState: {
     isLoading: false,
     isError: false,
-    data: null,
+    data: [],
     hasStarted: false,
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(fetchLorem.pending, (state) => {
-      
         state.isLoading = true;
+        state.hasStarted = true;
       })
 
       .addCase(fetchLorem.fulfilled, (state, action) => {
-          state.hasStarted = true;
         state.isLoading = false;
         state.data = action.payload;
       })
